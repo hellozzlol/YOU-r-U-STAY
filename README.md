@@ -1,2 +1,2 @@
 # mollaalsuga-eobs-eo
-mollaalsuga-eobs-eo 아직 뭐할지는 안정해졌지만 냅다 레포지토리 생성 완.
+프로젝트기간  : 2023-01.02-2023.02.02
