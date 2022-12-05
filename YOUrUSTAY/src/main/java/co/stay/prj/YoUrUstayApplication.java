@@ -1,19 +1,15 @@
 package co.stay.prj;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-@RestController
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@EnableScheduling
+@SpringBootApplication
+@MapperScan(basePackages = "co.stay.prj.**.mapper")
+
 public class YoUrUstayApplication {
-
-	@RequestMapping("/")
-	String home() {
-		return "Hello World!";
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(YoUrUstayApplication.class, args);
 	}
