@@ -17,10 +17,13 @@ public class YoUrUstayApplication {
 		SpringApplication.run(YoUrUstayApplication.class, args);
 	}
 	
-	/*
-	 * // 메인화면
-	 * 
-	 * @GetMapping("/") public String main() { return "main/main"; }
-	 */
+	
+	 // 메인화면
+	 
+	  @GetMapping("/") 
+	  public String main() {
+		  return "main/main"; 
+		  }
+	 
 
 }
