@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>커뮤니티 메인화면</title>
+<style type="text/css">
+
+.boardList {
+ padding-left : 50px;
+  padding-right : 50px;
+ 
+}
+thead{
+ height: 80px;
+}
+
+td{
+ height: 60px;
+}
+
+.pagebtn {
+	padding-left: 45%;
+}
+
+.boardbtn {
+  margin-left: 80%;
+}
+
+.findbtn {
+	width: 25%;
+	margin-left: 40%;
+	margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+
+ <!-- Page 제목 -->
+ <div class="page-header d-print-none">
+	<div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  메인화면
+                </div>
+                <h2 class="page-title">
+                  커뮤니티
+                </h2>
+              </div>
+          </div>
+        </div>
+
+	<!-- select + 검색기능 --><!-- select 머리말 선택했을 시 검색창 없애고 select 하나 더 생성 -->
+		<div class="mb-3 findbtn">
+	 	<div class="row g-2">
+
+					<div class="col-3">
+						<select name="" class="form-select">
+							<option selected="selected" value="">제목</option>
+							<option value="">글내용</option>
+							<option value="">머리말</option>
+						</select>
+					</div>
+
+				<div class="col-7">
+        	 	<input type="text" class="form-control" placeholder="Search for…">
+           		</div>
+           		
+             <div class="col-auto">
+           		<a href="#" class="btn btn-icon" aria-label="Button">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+                </a>
+                </div>
+               </div>
+              </div>
+
+	<!-- 커뮤니티 게시판 Start -->
+  <div class="col-12 boardList">
+                <div class="card">
+                  <div class="table-responsive">
+                    <table
+		class="table table-vcenter card-table table-striped">
+                      <thead>
+                        <tr>
+                          <th>글번호 / 머리말</th>
+                          <th>제목</th>
+                          <th>작성자</th>
+                          <th>게시일</th>
+                          <th>조회수</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td >Maryjo Lebarree</td>
+                          <td class="text-muted" >
+                            Civil Engineer, Product Management
+                          </td>
+                          <td class="text-muted" ><a href="#" class="text-reset">mlebarree5@unc.edu</a></td>
+                          <td class="text-muted" >
+                            User
+                          </td>
+                          <td>
+                            <a href="#">Edit</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td >Egan Poetz</td>
+                          <td class="text-muted" >
+                            Research Nurse, Engineering
+                          </td>
+                          <td class="text-muted" ><a href="#" class="text-reset">epoetz6@free.fr</a></td>
+                          <td class="text-muted" >
+                            Admin
+                          </td>
+                          <td>
+                            <a href="#">Edit</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td >Kellie Skingley</td>
+                          <td class="text-muted" >
+                            Teacher, Services
+                          </td>
+                          <td class="text-muted" ><a href="#" class="text-reset">kskingley7@columbia.edu</a></td>
+                          <td class="text-muted" >
+                            User
+                          </td>
+                          <td>
+                            <a href="#">Edit</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td >Christabel Charlwood</td>
+                          <td class="text-muted" >
+                            Tax Accountant, Engineering
+                          </td>
+                          <td class="text-muted" ><a href="#" class="text-reset">ccharlwood8@nifty.com</a></td>
+                          <td class="text-muted" >
+                            Owner
+                          </td>
+                          <td>
+                            <a href="#">Edit</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td >Haskel Shelper</td>
+                          <td class="text-muted" >
+                            Staff Scientist, Legal
+                          </td>
+                          <td class="text-muted" ><a href="#" class="text-reset">hshelper9@woothemes.com</a></td>
+                          <td class="text-muted" >
+                            Admin
+                          </td>
+                          <td>
+                            <a href="#">Edit</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            <!-- 커뮤니티 게시판 End -->
+              
+              	<!-- 글 작성하기 버튼 -->
+ 					<div class="col-6 col-sm-4 col-md-2 col-xl py-3 boardbtn">
+                        <a href="/boardInsertForm" class="btn btn-outline-info" >
+                          글 작성하기
+                        </a>
+                      </div>              
+              
+            <!-- 페이징버튼 Start -->
+            <div class="pagebtn">
+              <ul class="pagination ">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#">5</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>
+                        </a>
+                      </li>
+                    </ul>
+              </div>
+              
+              
+              </div>
+    </div>
+</body>
+</html>

@@ -19,7 +19,6 @@ public class YoUrUstayApplication {
 	
 	
 	 // 메인화면
-	 
 	  @GetMapping("/") 
 	  public String main() {
 		  return "main/main"; 
