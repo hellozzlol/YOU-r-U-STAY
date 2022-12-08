@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.stay.prj.market.mapper.MarketMapper">
+
+
+	<select id="marketList" resultType="co.stay.prj.market.service.MarketVO" >
+		select *
+		from market
+		order by mk_no DESC	
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
