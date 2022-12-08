@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>이어살기 글 작성폼</title>
+<style type="text/css">
+.page-header {
+    flex-direction: unset;
+}
+.align-items-center {
+	margin-left: 280px;
+	margin-bottom: 50px
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+
+ <!-- Page 제목 -->
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  게시글 작성 폼
+                </div>
+                <h2 class="page-title">
+                  이어살기
+                </h2>
+              </div>
+          </div>
+        </div>
+        
+        <!-- Form 머리말 select -->
+ <div class="col-md-6 mainForm">
+              <form class="card">
+                
+                
+             <!-- Form  시작  -->   
+                <div class="card-body">
+                  <div class="mb-3">
+                    <label class="form-label">제목</label>
+                    <div>
+                      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
+                    </div>
+                  </div>
+                   <div class="mb-3">
+                    <label class="form-label">위치</label>
+                    <div>
+                      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                  <div class="mb-3 col-4">
+                    <label class="form-label">층수</label>
+                    <div>
+                      <select class="form-select">
+                        <option>반지하</option>
+                        <option>1층</option>
+                        <option>2층</option>
+                        <option>3층</option>
+                        <option>4층이상</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="mb-3 col-4">
+                    <label class="form-label">보증금</label>
+                    <div>
+                      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
+                    </div>
+                  </div>
+                   <div class="mb-3 col-4">
+                    <label class="form-label">월세</label>
+                    <div>
+                      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
+                    </div>
+                  </div>
+                  </div>
+                  
+                   <div class="mb-3">
+                    <label class="form-label">계약만료기간</label>
+                    <div>
+                      <input type="date" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                            <div class="form-label">난방방식</div>
+                            <div>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" 
+	       name="radios-inline" >
+                                <span class="form-check-label">심야전기</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" 
+	       name="radios-inline" >
+                                <span class="form-check-label">전기난방</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" 
+	       name="radios-inline" >
+                                <span class="form-check-label">도시가스</span>
+                              </label>
+                            </div>
+                          </div>
+                          
+                      <div class="mb-3">
+                            <div class="form-label">관리비 포함사항</div>
+                            <div>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">수도세</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">인터넷</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">공용전기</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">유선</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">전기세 포함</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">난방비 포함</span>
+                              </label>
+                            </div>
+                          </div>
+                          
+                           <div class="mb-3">
+                            <div class="form-label">옵션</div>
+                            <div>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">에어컨</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">세탁기</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">냉장고</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">인터넷</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">wifi</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">유선</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">인덕션</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">가스렌지</span>
+                              </label>
+                               <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">cctv</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">침대</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">책상</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">tv</span>
+                              </label>
+                               <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" >
+                                <span class="form-check-label">정수기</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">공용 세탁기</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">공용주방</span>
+                              </label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">엘리베이터</span>
+                              </label>
+                            </div>
+                          </div>     
+                  
+                  <!-- 이미지 파일 업로드 Form 선택 필요 -->
+                  
+                   <div class="mb-3">
+                              <label class="form-label">기타내용</label>
+                              <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Content.."></textarea>
+                            </div>
+                </div>
+                
+                <!-- Form 끝 -->
+                <div class="card-footer text-end">
+                  <button type="submit" class="btn btn-primary">등록하기</button>
+                </div>
+              </form>
+            </div>
+           </div>
+           </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>이어살기 메인화면</title>
+<style type="text/css">
+.cardList {
+	margin:0 auto;
+	padding-top: 3%;
+}
+.pagebtn {
+	padding-left: 45%;
+}
+
+.myhomebtn {
+  margin-left: 70%;
+}
+
+.findbtn {
+	width: 25%;
+	margin-left: 40%;
+	margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+
+<!-- Page 제목 -->
+ <div class="page-header d-print-none">
+	<div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  메인화면
+                </div>
+                <h2 class="page-title">
+                  이어살기
+                </h2>
+              </div>
+          </div>
+        </div>
+        
+        <!-- select + 검색기능 --><!-- select 머리말 선택했을 시 검색창 없애고 select 하나 더 생성 -->
+		<div class="mb-3 findbtn">
+	 	<div class="row g-2">
+
+					<div class="col-3">
+						<select name="" class="form-select">
+							<option selected="selected" value="">제목</option>
+							<option value="">글내용</option>
+						</select>
+					</div>
+
+				<div class="col-7">
+        	 	<input type="text" class="form-control" placeholder="Search for…">
+           		</div>
+           		
+             <div class="col-auto">
+           		<a href="#" class="btn btn-icon" aria-label="Button">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+                </a>
+                </div>
+               </div>
+              </div>
+        
+        <div class="cardList">
+        <!--  -->
+        <div class="card mb-3" style="width: 900px; height: 200px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card mb-3" style="width: 900px; height: 200px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="width: 900px; height: 200px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="width: 900px; height: 200px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+        <!--  -->
+        </div>
+        
+        <!-- 글 작성하기 버튼 -->
+ 					<div class="col-6 col-sm-4 col-md-2 col-xl py-3 myhomebtn">
+                        <a href="/myhomeInsertForm" class="btn btn-outline-info" >
+                          글 작성하기
+                        </a>
+                      </div>              
+              
+            <!-- 페이징버튼 Start -->
+            <div class="pagebtn">
+              <ul class="pagination ">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#">5</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>
+                        </a>
+                      </li>
+                    </ul>
+              </div>
+        
+        </div>
+
+</div>
+</body>
+</html>
