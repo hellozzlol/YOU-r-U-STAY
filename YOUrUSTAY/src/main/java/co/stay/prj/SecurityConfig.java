@@ -1,21 +1,16 @@
 package co.stay.prj;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/chk").permitAll()    // LoadBalancer Chk
-                    .antMatchers("/manage").hasAuthority("ROLE_ADMIN")
+                    .antMatchers("/").permitAll()    // LoadBalancer Chk
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -35,3 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/static/js/**","/static/css/**","/static/img/**","/static/frontend/**");
     }
 }
+
+
+
+
+
+

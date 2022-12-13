@@ -4,7 +4,7 @@
 
 	<!-- 일반회원등록 -->
 	<insert id="usersInsert"
-		parameterType="co.stay.prj.users.service.usersVO">
+		parameterType="co.stay.prj.users.service.UsersVO">
 		<selectKey keyProperty="userNo" order="BEFORE"
 			resultType="int">
 			SELECT
