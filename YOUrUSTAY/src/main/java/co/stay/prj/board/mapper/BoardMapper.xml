@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.stay.prj.board.mapper.BoardMapper">
+
+	<!-- 커뮤니티 게시글 전체조회 -->
+	<select id="boardList">
+	</select>
+	
+	<!-- 커뮤니티 게시글 단건조회 -->
+	<select id="boardSelectOne">
+	</select>
+	
+	<!-- 커뮤니티 게시글 작성 -->
+	<insert id="boardInsert">
+		<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">
+			SELECT CASE WHEN MAX(BOARD_NO) IS NULL THEN 1 ELSE MAX(BOARD_NO)+1 END AS ID FROM BOARD
+		</selectKey>
+		insert into board(board_no,board_title,board_personnel,board_link,board_content,board_dt,board_hit,board_category,file_gid,user_no) 
+		values (#{boardNo}, #{boardTitle}, #{boardPersonnel}, #{boardLink}, #{boardContent}, sysdate, 0, #{boardCategory}, #{fileGid}, 1)
+	</insert>
+	
+	<!-- 커뮤니티 게시글 수정 -->
+	<update id="boardUpdate">
+	</update>
+	
+	<!-- 커뮤니티 게시글 삭제 -->
+	<delete id="boardDelete">
+	</delete>
+	
+	<!-- 커뮤니티 게시글 검색 -->
+	<select id="boardSearch">
+	
+	</select>
+</mapper>

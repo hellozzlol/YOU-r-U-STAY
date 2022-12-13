@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.stay.prj.pgroup.mapper.PgroupMapper">
+	
+	<insert id="fileGroupInsert">
+		<selectKey keyProperty="fileGid" order="BEFORE" resultType="int">
+			SELECT CASE WHEN MAX(FILE_GID) IS NULL THEN 1 ELSE MAX(FILE_GID)+1 END AS ID FROM PGROUP
+		</selectKey>
+			INSERT INTO PGROUP(FILE_GID, USTATE) VALUES ( #{fileGid}, 'Y')
+	</insert>
+	
+</mapper>
