@@ -13,9 +13,16 @@ public class QnaServiceImpl implements QnaService {
 	@Autowired
 	private QnaMapper qna;
 
+	// 게시판 목록
 	@Override
 	public List<QnaVO> qnaList() {
 		return qna.qnaList();
+	}
+
+	// 게시판 글 등록
+	@Override
+	public int qnaInsert(QnaVO vo) {
+		return qna.qnaInsert(vo);
 	}
 
 }

@@ -11,94 +11,74 @@
 </head>
 <body>
 	<article layout:fragment="content">
-<div class="col-12">
+	<div class="page-header d-print-none">
+		<div class=container-xl>
+			<div class="row g-2 align-items-center">
+				<div class="col">
+					<div class="page-pretitle">문의 게시판</div>
+					<h2 class="page-title">Q&A</h2>
+				</div>
+			</div>
+			<br><br>
+		<div class="row g-2">
+		<div class="col-1">
+           <select class="form-select">
+             <option>제목</option>
+             <option>작성자</option>
+           </select>
+         </div> 	
+                    
+		
+           <div class="col-2">
+             <input type="text" class="form-control" placeholder="Search for…">
+           </div>
+           <div class="col-auto">
+             <a href="#" class="btn btn-icon" aria-label="Button">
+               <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+             </a>
+           </div>
+       
+		</div>	
+			
+		<br><br><br>	
+			<div class="col-12">
                 <div class="card">
                   <div class="table-responsive">
-                    <table
-		class="table table-vcenter card-table table-striped">
+                    <table class="table table-vcenter card-table table-striped">
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Title</th>
-                          <th>Email</th>
-                          <th>Role</th>
-                          <th class="w-1"></th>
+                          <th>글 번호</th>
+                          <th:if="${pagination.catgory == null}">구분</th>
+                          <th id="qnaTitle" class="desc">제목</th>
+                          <th id="userNo" class="desc">작성자</th>
+                          <th id="qnaDt" class="desc">작성일자</th>
+                          <th id="qnaHit" class="desc">조회수</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td >Maryjo Lebarree</td>
-                          <td class="text-muted" >
-                            Civil Engineer, Product Management
-                          </td>
-                          <td class="text-muted" ><a href="#" class="text-reset">mlebarree5@unc.edu</a></td>
-                          <td class="text-muted" >
-                            User
-                          </td>
-                          <td>
-                            <a href="#">Edit</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td >Egan Poetz</td>
-                          <td class="text-muted" >
-                            Research Nurse, Engineering
-                          </td>
-                          <td class="text-muted" ><a href="#" class="text-reset">epoetz6@free.fr</a></td>
-                          <td class="text-muted" >
-                            Admin
-                          </td>
-                          <td>
-                            <a href="#">Edit</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td >Kellie Skingley</td>
-                          <td class="text-muted" >
-                            Teacher, Services
-                          </td>
-                          <td class="text-muted" ><a href="#" class="text-reset">kskingley7@columbia.edu</a></td>
-                          <td class="text-muted" >
-                            User
-                          </td>
-                          <td>
-                            <a href="#">Edit</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td >Christabel Charlwood</td>
-                          <td class="text-muted" >
-                            Tax Accountant, Engineering
-                          </td>
-                          <td class="text-muted" ><a href="#" class="text-reset">ccharlwood8@nifty.com</a></td>
-                          <td class="text-muted" >
-                            Owner
-                          </td>
-                          <td>
-                            <a href="#">Edit</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td >Haskel Shelper</td>
-                          <td class="text-muted" >
-                            Staff Scientist, Legal
-                          </td>
-                          <td class="text-muted" ><a href="#" class="text-reset">hshelper9@woothemes.com</a></td>
-                          <td class="text-muted" >
-                            Admin
-                          </td>
-                          <td>
-                            <a href="#">Edit</a>
-                          </td>
+                      <tbody id="qnaListTable">
+                        <tr th:each="list :${lists}">
+                          <td class="text-muted" th:text="${list.qnaNo}">1</td>
+                          <td class="text-muted" th:text="${list.qnaCategory}">카테고리명</td>
+                          <td class="text-muted"><a href="#" th:href="@{/"  class="text-reset">글 제목입니다랄라</a></td>
+                          <td class="text-muted" >작성자닉넴</td>
+                          <td class="text-muted" >작성일자</td>
+                          <td class="text-muted" >조회수</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-
-
-
+              <div class="col-6 col-sm-4 col-md-2 col-xl py-3">
+                        <a href="/qnaForm" class="btn btn-outline-primary w-60">
+                          글 작성
+                        </a>
+                      </div>
+              
+              		
+		</div>
+	</div>	
 	</article>
 </body>
 </html>

@@ -6,4 +6,5 @@ public interface QnaService {
 	
 	List<QnaVO> qnaList();
 
+	int qnaInsert(QnaVO vo);
 }

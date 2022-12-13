@@ -8,4 +8,6 @@ public interface QnaMapper {
 
 	List<QnaVO> qnaList();
 	
+	int qnaInsert(QnaVO vo);
+	
 }

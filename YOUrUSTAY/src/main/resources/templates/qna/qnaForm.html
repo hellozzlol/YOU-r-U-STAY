@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>QnA 글 작성하기</title>
+<style>
+.center {
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+	<article layout:fragment="content">
+		<div class="page-header d-print-none">
+			<div class=container-xl>
+				<div class="row g-2 align-items-center">
+					<div class="col">
+						<div class="page-pretitle">문의 게시판</div>
+						<h2 class="page-title">글 작성하기</h2>
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<form action="qnaInsert.do" method="post" id="frm">
+				<div>
+				<div class="col-7 center">
+					<label class="form-label">제목</label> <input type="text"
+						class="form-control" name="example-text-input">
+				</div>
+				<br>
+				<div class="col-7 center">
+					<label class="form-label">내용</label>
+					<textarea class="form-control" name="example-textarea-input"
+						rows="17"></textarea>
+				<br>
+						<button type="submit" id="saveBtn" class="btn btn-primary" onclick="savePost();" style="float:right">등록하기</button>
+				</div>
+				</div>
+				</form>
+				<br>
+				<br>
+				<br>
+				
+				<script>
+				
+				</script>
+				
+			</div>
+		</div>
+	</article>
+</body>
+</html>
