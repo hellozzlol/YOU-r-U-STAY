@@ -6,9 +6,28 @@
 	<select id="qnaList" resultType="co.stay.prj.qna.service.QnaVO">
 		select *
 		from qna
-		order by qna_no DESC
+		order by qna_no
+		DESC
 	</select>
 
+	<!-- 게시판 글 등록 -->
+	<insert id="qnaInsert"
+		parameterType="co.stay.prj.qna.service.QnaVO">
+		<selectKey keyProperty="qnaNo" order="BEFORE"
+			resultType="int">
+			select
+			case when max(qna_no) is null then 1
+			else
+			max(qnx_no)+1
+			end as no
+			from qna
+		</selectKey>
 
+		insert into qna
+		values(#{qnaNo}, #{qnaTitle}, #{qnaContent}, 0, 1, 1,
+		1, #{qnaCategory}, #{qnaAttach, jdbcType=VARCHAR}, #{qnaAttachDir,
+		jdbcType=VARCHAR},
+		#{qnaDt}, #{userNo} )
+	</insert>
 
 </mapper>
