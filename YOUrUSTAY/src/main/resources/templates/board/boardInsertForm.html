@@ -5,20 +5,42 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 글 작성 폼</title>
-
-<style type="text/css">
+<script src="js/jquery-3.6.0.min.js"></script>
+<style>
 
 .page-header {
     flex-direction: unset;
 }
-.row {
+.align-items-center {
 	margin-left: 280px;
 	margin-bottom: 50px
+}
+
+.file-list {
+    height: 200px;
+    overflow: auto;
+    border: 1px solid #989898;
+    padding: 10px;
+}
+.file-list .filebox p {
+    font-size: 14px;
+    margin-top: 10px;
+    display: inline-block;
+}
+.file-list .filebox .delete i {
+    color: #ff5353;
+    margin-left: 5px;
+}
+
+ /* 이미지 삭제 버튼 */
+.fa-minus-square:before {
+    content: "\f146";
 }
 
 </style>
 
 </head>
+
 <body>
 <div layout:fragment="content">
 
@@ -39,16 +61,15 @@
         </div>
         
         <!-- Form 머리말 select -->
- <div class="col-md-6 mainForm">
-              <form class="card">
+ 		<div class="col-md-6 mainForm">
+              <form class="card" action="boardInsert" method="post" enctype="multipart/form-data">
                 <div class="card-header">
                   <div class="mb-3">
                     <label class="form-label">머리말</label>
                     <div>
-                      <select class="form-select">
-                        <option>같이해요</option>
-                        <option>사담</option>
-                        <option>질문</option>
+                      <select class="form-select" id="boardCategory" name="boardCategory"  onclick="formAdd(this.value)">
+                        <option th:each="board : ${boardList}" 
+                        		th:value="${board.cdNo}" th:utext="${board.cdName}"></option>
                       </select>
                     </div>
                   </div>
@@ -56,29 +77,190 @@
                 
              <!-- Form  시작  -->   
                 <div class="card-body">
+                <div id="addForm">
+                
                   <div class="mb-3">
                     <label class="form-label">제목</label>
                     <div>
-                      <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
+                      <input type="text" id="boardTitle" name="boardTitle" class="form-control" aria-describedby="emailHelp" >
                     </div>
                   </div>
-                  
-                  <!-- 같이해요 클릭시 정원, 사이트 주소 입력칸 추가 생성 필요 -->
-                  <!-- 이미지 파일 업로드 Form 선택 필요 -->
-                  
-                   <div class="mb-3">
-                              <label class="form-label">내용 <span class="form-label-description">56/100</span></label>
-                              <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Content.."></textarea>
-                            </div>
-                </div>
+                  <div class="row" id="add">
+                  <!-- 같이해요 눌렀을떄 폼 추가 될 자리 -->
+                  <!-- 같이해요 클릭시 정원, 사이트 주소 입력칸 추가 생성 -->
+                  </div>
+                  </div>
+						<div class="mb-3">
+							<label class="form-label">내용</label>
+							<textarea id="boardContent" name="boardContent" class="form-control" rows="6" placeholder="Content.."></textarea>
+						</div>
+
+						<!-- 이미지 파일 업로드 Form -->
+						<div class="mb-3">
+							<label class="form-label">이미지</label>
+							<div class="insert">
+								<input type="file" id="file" name="file" onchange="addFile(this)" multiple>
+							    <div class="file-list">
+							    
+							    <!-- 
+								    <div id="file+fileNo" class="filebox">
+						               <p class="name"> file.name </p>
+						               	<a class="delete" onclick="deleteFile(fileNo)>
+						               		<i class="far fa-minus-square"></i>
+						               	</a>
+						            </div> 
+		           				 -->
+							    
+							    </div>
+							</div>
+						</div>
+					</div>
                 
                 <!-- Form 끝 -->
                 <div class="card-footer text-end">
                   <button type="submit" class="btn btn-primary">등록하기</button>
+                  <button type="reset" class="btn btn-light-secondary mr-1 mb-1">초기화</button>
                 </div>
               </form>
             </div>
            </div>
-           </div>
+           
+           
+           <script type="text/javascript">
+           	function formAdd(key) {
+           	//	console.log(key);
+           		
+           		let add = document.getElementById("add");
+           		
+           		switch(key) {
+           		case '3': // 같이해요
+           			add.innerHTML="";
+           			add.innerHTML += ` <div class="mb-3 col-2">
+                        <label class="form-label">인원</label>
+                        <div>
+                          <select class="form-select" id="boardPersonnel" name="boardPersonnel">
+                            <option value="1">1명~3명</option>
+                            <option value="2">4명~6명</option>
+                            <option value="3">7명~9명</option>
+                            <option value="4">10명이상</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mb-3 col-10">
+                        <label class="form-label">사이트</label>
+                        <div>
+                          <input type="url" id="boardLink" name="boardLink" class="form-control">
+                        </div>
+                      </div>`;
+                      break;
+           		case '2' :
+           			add.innerHTML="";
+           		 	  break;
+           		case '1' :
+           			add.innerHTML="";
+           		 	  break;
+           			
+           		}
+           	}
+           	
+           	/* 첨부파일 추가 */
+           	
+           	var fileNo = 0;
+			var filesArr = new Array();
+
+			function addFile(obj){
+				
+				// console.log(obj.files);
+				
+	   			 var maxFileCnt = 5;   // 첨부파일 최대 개수
+			     var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수 0
+			     var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수 5
+			     var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수 4
+
+		    // 첨부파일 개수 확인
+		    if (curFileCnt > remainFileCnt) { // 현재 선택된 첨부파일 개수가 추가로 첨부가능한 개수보다 많다면
+		        alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
+		    }
+		
+		    for (var i = 0; i < Math.min(curFileCnt, remainFileCnt); i++) { // 현재 선택된 첨부파일 개수와 추가로 첨부가능한 개수중 작은 수 4
+		
+		        const file = obj.files[i]; // 0,1,2,3 // 선택된 이미지내용을 담은 배열 => file
+		
+		        // 첨부파일 검증
+		        if (validation(file)) {
+		            // 파일 배열에 담기
+		            var reader = new FileReader();
+		            reader.onload = function () { // onload : 문서가 태그정보들을 메모리에 전부 로드 후 실행.
+		                filesArr.push(file);
+		            };
+		            
+		            reader.readAsDataURL(file)
+		
+		            // 목록 추가
+		            let htmlData = '';
+		            htmlData += '<div id="file' + fileNo + '" class="filebox">';
+		            htmlData += '   <p class="name">' + file.name + '</p>';
+		            htmlData += '   <a class="delete" onclick="deleteFile(' + fileNo + ');"><i class="far fa-minus-square"></i></a>';
+		            htmlData += '</div>';
+		            $('.file-list').append(htmlData);
+		            fileNo++;
+		            
+		        } else {
+		            continue;
+		        }
+			    }
+		    
+			    // 초기화
+			    document.querySelector("input[type=file]").value = "";
+			    submitForm();
+			}
+		
+			
+			/* 첨부파일 검증 */
+			function validation(obj){
+				// console.log(obj); // file에 들어가는 순서대로 하나씩 검증
+				
+			    const fileTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif'];
+			    
+			    if (obj.name.length > 50) {
+			        alert("파일명이 50자 이상인 파일은 제외되었습니다.");
+			        return false;
+			    } else if (obj.size > (100 * 1024 * 1024)) {
+			        alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
+			        return false;
+			    } else if (obj.name.lastIndexOf('.') == -1) {
+			        alert("확장자가 없는 파일은 제외되었습니다.");
+			        return false;
+			    } else if (!fileTypes.includes(obj.type)) {
+			        alert("이미지만 첨부가능합니다.");
+			        return false;
+			    } else {
+			        return true;
+			    }
+			}
+			
+			/* 첨부파일 삭제 */
+			function deleteFile(num) {
+			    document.querySelector("#file" + num).remove();
+			    filesArr[num].is_delete = true;
+			}
+			
+			/* 폼 전송 */
+			function submitForm() {
+			    // 폼데이터 담기
+			    var form = document.querySelector("form");
+			    var formData = new FormData(form);
+			   
+			    for (var i = 0; i < filesArr.length; i++) {
+			        // 삭제되지 않은 파일만 폼데이터에 담기
+			        if (!filesArr[i].is_delete) {
+			            formData.append("attach_file", filesArr[i]);
+			        }
+			    }
+			
+			}
+           </script>
+           
+    </div>
 </body>
 </html>
