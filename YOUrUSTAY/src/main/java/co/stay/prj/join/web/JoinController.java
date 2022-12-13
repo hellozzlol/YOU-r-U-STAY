@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import co.stay.prj.join.service.JoinService;
-import co.stay.prj.users.service.usersVO;
+import co.stay.prj.users.service.UsersVO;
+
 
 @Controller
 
@@ -27,14 +28,14 @@ public class JoinController {
 
 	// 회원등록
 	@PostMapping("member/JoinForm")
-	public String userInsert(usersVO vo) {
+	public String userInsert(UsersVO vo) {
 		int cnt = js.usersInsert(vo);
 		return "redirect:/loginForm";
 	}
 
 	// 비밀번호 재설정
 	@PostMapping("pwUpdate")
-	public String pwUpdate(usersVO vo) {
+	public String pwUpdate(UsersVO vo) {
 		System.out.println(vo.toString());
 		int cnt = js.pwUpdate(vo);
 		return "redirect:/loginForm";
