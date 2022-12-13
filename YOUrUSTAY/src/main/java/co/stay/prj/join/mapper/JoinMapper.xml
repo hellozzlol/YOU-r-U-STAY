@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.stay.prj.join.mapper.JoinMapper">
+
+	<!-- 일반회원등록 -->
+	<insert id="usersInsert"
+		parameterType="co.stay.prj.users.service.usersVO">
+		<selectKey keyProperty="userNo" order="BEFORE"
+			resultType="int">
+			SELECT
+			CASE WHEN max(user_no) IS NULL
+			THEN 1
+			ELSE max(user_no) + 1
+			END AS no
+			FROM users
+		</selectKey>
+		INSERT INTO USERS (user_no,user_id,user_pw,user_token,user_name,user_nick,user_call,user_email,user_address,user_author,file_gid)
+		VALUES(#{userNo})
+		,#{userId}
+		,#{userPw}
+		,#{userToken}
+		,#{userName}
+		,#{userNick}
+		,#{userCall}
+		,#{userEmail}
+		,#{userAddress}
+		,'USER'
+		,100
+		}
+	</insert>
+
+
+
+
+
+
+
+</mapper>
