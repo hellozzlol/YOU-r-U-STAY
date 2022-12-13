@@ -5,7 +5,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.stay.prj.join.mapper.JoinMapper;
-import co.stay.prj.users.service.usersVO;
+import co.stay.prj.users.service.UsersVO;
+
 
 @Service
 public class JoinserviceImpl implements JoinService {
@@ -15,7 +16,7 @@ public class JoinserviceImpl implements JoinService {
 
 	// 일반회원 등록
 	@Override
-	public int usersInsert(usersVO vo) {
+	public int usersInsert(UsersVO vo) {
 		// 비밀번호 암호화(DB)
 		BCryptPasswordEncoder Pencoder = new BCryptPasswordEncoder();
 		String result = Pencoder.encode(vo.getUserPw());
@@ -25,7 +26,7 @@ public class JoinserviceImpl implements JoinService {
 	}
 
 	@Override
-	public String stateUpdate(usersVO vo) {
+	public String stateUpdate(UsersVO vo) {
 		// 회원상태업데이트
 		return null;
 	}
@@ -44,11 +45,13 @@ public class JoinserviceImpl implements JoinService {
 
 	// 비밀번호재설정
 	@Override
-	public int pwUpdate(usersVO vo) {
+	public int pwUpdate(UsersVO vo) {
 		BCryptPasswordEncoder Pencoder = new BCryptPasswordEncoder();
 		String result = Pencoder.encode(vo.getUserPw());
 		vo.setUserPw(result);
 		return jm.usersInsert(vo);
 	}
+
+	
 
 }

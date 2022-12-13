@@ -1,6 +1,6 @@
 package co.stay.prj.join.service;
 
-import co.stay.prj.users.service.usersVO;
+import co.stay.prj.users.service.UsersVO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class JoinVO {
 	
-	private usersVO users;
+	private UsersVO users;
 }
