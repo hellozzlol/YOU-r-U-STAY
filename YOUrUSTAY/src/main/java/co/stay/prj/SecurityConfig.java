@@ -1,38 +1,70 @@
 package co.stay.prj;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                    .antMatchers("/").permitAll()    // LoadBalancer Chk
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("loginForm")
-                    .loginProcessingUrl("/login")
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .defaultSuccessUrl("/main/main", true)
-                    .permitAll()
-                .and()
-                    .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"));
-    }
+import co.stay.prj.login.service.UService;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/static/js/**","/static/css/**","/static/img/**","/static/frontend/**");
-    }
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+	@Bean
+	public UService userService() {
+		return new UService();
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+
+	@Bean
+	public AccessDeniedHandler accessDeniedHandler() {
+		return new WebAccessDenyHandler();
+	}
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests((requests) -> 
+							requests
+							.antMatchers("/usersboardList","/login","/loginForm","/static/**"
+									,"/templates/**","/boardList","/joinForm","/marketList","/myhomeList","/qnaList").permitAll()
+							.anyRequest().authenticated())
+				.formLogin().loginPage("/loginForm")
+							.usernameParameter("userId")
+							.usernameParameter("userPw")
+							.defaultSuccessUrl("/main")
+							.and()
+				.logout().logoutUrl("/logout")
+					      .logoutSuccessUrl("/index")
+						 .invalidateHttpSession(true)
+						 .deleteCookies("JSESSIONID")
+						 .and()
+				.exceptionHandling()
+					     .accessDeniedHandler(accessDeniedHandler())
+					     .and()
+				.csrf().disable()
+				.userDetailsService(userService());
+		http.headers().frameOptions().disable();
+		return http.build();
+	}
+	
+	
+	
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> web.ignoring().antMatchers("/dist/**", "/admin/**", "/fullcalendar/**","/js/**");
+	}
+	
+	
 }
-
-
-
-
-
-
