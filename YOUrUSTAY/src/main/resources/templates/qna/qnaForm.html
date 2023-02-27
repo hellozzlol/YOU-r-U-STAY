@@ -4,6 +4,7 @@
 	layout:decorate="~{layout/layout}">
 <head>
 <meta charset="UTF-8">
+
 <title>QnA 글 작성하기</title>
 <style>
 .center {
@@ -21,34 +22,39 @@
 						<h2 class="page-title">글 작성하기</h2>
 					</div>
 				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<form action="qnaInsert.do" method="post" id="frm">
+				<br> <br> <br> <br>
 				<div>
-				<div class="col-7 center">
-					<label class="form-label">제목</label> <input type="text"
-						class="form-control" name="example-text-input">
+					<form action="qnaInsert" method="post" id="frm">
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}">
+
+						<div class="col-1">
+							<select class="form-select" id="qnaCategory" name="qnaCategory">
+								<option>질문</option>
+							</select>
+						</div>
+
+						<div class="col-7 center">
+							<label class="form-label">제목</label> <input id="qnaTitle"
+								name="qnaTitle" type="text" class="form-control">
+						</div>
+						<br>
+						<div class="col-7 center">
+							<label class="form-label">내용</label>
+							<textarea id="qnaContent" name="qnaContent" class="form-control"
+								rows="17"></textarea>
+							<br>
+							<button type="submit" class="btn btn-primary"
+								style="float: right">등록하기</button>
+						</div>
+					</form>
 				</div>
-				<br>
-				<div class="col-7 center">
-					<label class="form-label">내용</label>
-					<textarea class="form-control" name="example-textarea-input"
-						rows="17"></textarea>
-				<br>
-						<button type="submit" id="saveBtn" class="btn btn-primary" onclick="savePost();" style="float:right">등록하기</button>
-				</div>
-				</div>
-				</form>
-				<br>
-				<br>
-				<br>
-				
+				<br> <br> <br>
+
 				<script>
-				
+					
 				</script>
-				
+
 			</div>
 		</div>
 	</article>

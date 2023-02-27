@@ -4,7 +4,13 @@ import java.util.List;
 
 public interface QnaService {
 	
-	List<QnaVO> qnaList();
+	List<QnaVO> qnaList(QnaVO vo); // 
 
 	int qnaInsert(QnaVO vo);
+	
+	int qnaSelect(QnaVO vo);
+	
+	
+	
+	
 }

@@ -18,16 +18,32 @@
 			select
 			case when max(qna_no) is null then 1
 			else
-			max(qnx_no)+1
+			max(qna_no)+1
 			end as no
 			from qna
 		</selectKey>
 
-		insert into qna
-		values(#{qnaNo}, #{qnaTitle}, #{qnaContent}, 0, 1, 1,
-		1, #{qnaCategory}, #{qnaAttach, jdbcType=VARCHAR}, #{qnaAttachDir,
-		jdbcType=VARCHAR},
-		#{qnaDt}, #{userNo} )
+		INSERT INTO qna
+		VALUES(#{qnaNo}
+		, #{qnaTitle}
+		, #{qnaContent}
+		, 0
+		, 1
+		, 1
+		, 1
+		, #{qnaCategory}
+		, #{qnaAttach}
+		, #{qnaAttachDir}
+		, sysdate
+		, #{userNo})
 	</insert>
+	
+	<!-- 게시판 글 상세보기 -->
+	<select id="qnaSelect" resultType="co.stay.prj.qna.service.QnaVO">
+		select qna_no, qna_title, qna_content, qna_hit, qna_category,
+			   qna_attach, qna_attachdir, qna_dt, user_no
+		from qna 
+		where qna_no = #{qnaNo}
+	</select>
 
 </mapper>

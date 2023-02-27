@@ -15,7 +15,7 @@ public class QnaServiceImpl implements QnaService {
 
 	// 게시판 목록
 	@Override
-	public List<QnaVO> qnaList() {
+	public List<QnaVO> qnaList(QnaVO vo) {
 		return qna.qnaList();
 	}
 
@@ -23,6 +23,13 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public int qnaInsert(QnaVO vo) {
 		return qna.qnaInsert(vo);
+	}
+
+	// 게시판 글 조회
+	@Override
+	public int qnaSelect(QnaVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
