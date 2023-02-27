@@ -2,11 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.stay.prj.login.mapper.LoginMapper">
 
-<select id="Login" resultType="co.stay.prj.login.service.LoginVO">
-<!-- 로그인 -->
-SELECT * FROM USERS
-WHERE USER_ID=#{userId}
-</select>
+	<select id="login"
+		resultType="co.stay.prj.login.service.LoginVO">
+		<!-- 로그인 -->
+		<!-- SELECT user_id,user_pw,user_name, 'ROLE_' || user_author as user_author, 
+			user_no from users where user_id=#{userId} -->
+		select user_no, user_id, user_pw, user_author 
+		from users where user_no = #{userId} and user_pw = #{userPw}
+	</select>
 
 
 

@@ -18,7 +18,7 @@
 		VALUES(#{userNo})
 		,#{userId}
 		,#{userPw}
-		,#{userToken}
+		,'a1a4'
 		,#{userName}
 		,#{userNick}
 		,#{userCall}
@@ -28,11 +28,5 @@
 		,100
 		}
 	</insert>
-
-
-
-
-
-
 
 </mapper>
