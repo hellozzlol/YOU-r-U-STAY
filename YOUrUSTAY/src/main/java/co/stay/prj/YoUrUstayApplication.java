@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,21 +29,20 @@ public class YoUrUstayApplication {
 		return "main/main";
 	}
 
-	// 로그인 폼
-
-	@GetMapping("/loginForm")
-	public String loginForm(HttpServletRequest request) {
-		// 세션 강제 세션 추가
-		request.getSession(true);
-		return "member/loginForm";
-	}
-
-	// 회원가입 폼
-
-	@PostMapping("/joinForm")
-	public String signupForm() {
-		return "member/joinForm";
-	}
+	/*
+	 * // 로그인 폼
+	 * 
+	 * @GetMapping("/login") public String loginForm(HttpServletRequest request,
+	 * Model model) { request.getSession(true); //세션 강제 세션 추가 return
+	 * "member/loginForm"; }
+	 * 
+	 * 
+	 * 
+	 * // 회원가입 폼
+	 * 
+	 * @PostMapping("/joinForm") public String signupForm() { return
+	 * "member/joinForm"; }
+	 */
 
 		
 }
